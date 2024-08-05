@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import '../models/product_model.dart';
 
@@ -15,7 +14,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
 
   @override
   Future<List<ProductModel>> getProducts() async {
-    final response = await dio.get('https://api.example.com/products');
+    final response = await dio.get('/products');
     if (response.statusCode == 200) {
       List<dynamic> jsonList = response.data;
       return jsonList.map((json) => ProductModel.fromJson(json)).toList();
@@ -27,7 +26,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<List<ProductModel>> searchProducts(String query) async {
     final response = await dio.get(
-      'https://api.example.com/products',
+      '/products',
       queryParameters: {'search': query},
     );
     if (response.statusCode == 200) {
@@ -41,7 +40,7 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   @override
   Future<List<ProductModel>> filterProducts(String category) async {
     final response = await dio.get(
-      'https://api.example.com/products',
+      '/products',
       queryParameters: {'category': category},
     );
     if (response.statusCode == 200) {

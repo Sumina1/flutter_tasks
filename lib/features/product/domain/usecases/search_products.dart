@@ -1,5 +1,7 @@
+import 'package:test_app/features/product/data/repositories/product_repository.dart';
+
 import '../entities/product.dart';
-import '../repositories/product_repository.dart';
+
 
 class SearchProducts {
   final ProductRepository repository;
@@ -10,3 +12,5 @@ class SearchProducts {
     return await repository.searchProducts(query);
   }
 }
+
+

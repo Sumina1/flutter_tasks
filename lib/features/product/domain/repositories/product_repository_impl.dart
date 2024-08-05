@@ -1,8 +1,6 @@
-import 'package:test_app/features/product/data/repositories/product_repository.dart';
-
+import '../../data/datasources/product_remote_data_source.dart';
+import '../../data/repositories/product_repository.dart';
 import '../../domain/entities/product.dart';
-
-import '../datasources/product_remote_data_source.dart';
 
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource remoteDataSource;
@@ -15,17 +13,15 @@ class ProductRepositoryImpl implements ProductRepository {
     return productModels;
   }
 
-@override
+  @override
   Future<List<Product>> searchProducts(String query) async {
-       final productModels = await remoteDataSource.getProducts();
-    return productModels.where((product) => product.name.toLowerCase().contains(query.toLowerCase())).toList();
+    final productModels = await remoteDataSource.searchProducts(query);
+    return productModels;
   }
+
   @override
   Future<List<Product>> filterProducts(String category) async {
     final productModels = await remoteDataSource.filterProducts(category);
     return productModels;
   }
 }
-
-
-

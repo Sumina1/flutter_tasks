@@ -1,5 +1,7 @@
+import 'package:test_app/features/product/data/repositories/product_repository.dart';
+
 import '../entities/product.dart';
-import '../repositories/product_repository.dart';
+
 
 class GetProducts {
   final ProductRepository repository;
